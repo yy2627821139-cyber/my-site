@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>新会员注册 - 逸夫书店</title>
+
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+<!-- 引入表单校验 js -->
+<script type="text/javascript" src="js/form.js"></script>
+</head>
+<body class="main">
+
+   <!-- 顶部导航 start -->
+   <div class="topnav">
+      <ul>
+         <li><a href="index.html">首页</a></li>
+         <li class="dropdown">
+            <a href="#">商品分类<span class="caret"></span></a>
+            <div class="dropdown-content">
+               <a href="#">编程语言</a>
+               <a href="#">数据库</a>
+               <a href="#">操作系统</a>
+               <a href="#">网络技术</a>
+               <a href="#">小说</a>
+               <a href="#">散文</a>
+               <a href="#">传记</a>
+            </div>
+         </li>
+         <li><a href="#">热销</a></li>
+         <li><a href="#">新品</a></li>
+         <li class="active"><a href="user_register.html">注册</a></li>
+         <li><a href="login.html">登录</a></li>
+      </ul>
+   </div>
+   <!-- 顶部导航 end -->
+
+   <!-- 3. 注册表单 start -->
+   <div id="divcontent" align="center">
+      <form action="/yjt1012_war_exploded/registerServlet" method="post" onsubmit="return checkForm();">
+         <table width="850px" border="0" cellspacing="0">
+            <tr>
+               <td style="padding: 30px">
+                  <h1>新会员注册</h1>
+                  <table width="70%" border="0" cellspacing="2" class="upline">
+                     <tr>
+                        <td style="text-align: right; width: 20%">会员邮箱：</td>
+                        <td style="width: 40%">
+                           <input type="text" class="textinput" id="email" name="email" onkeyup="checkEmail();"/>
+                        </td>
+                        <td colspan="2"><span id="emailMsg"></span><font color="#999999">请输入有效的邮箱地址</font></td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: right">会员名：</td>
+                        <td><input type="text" class="textinput" id="username" name="username" onkeyup="checkUsername();"/></td>
+                        <td colspan="2"><span id="usernameMsg"></span><font color="#999999">字母数字下划线1到10位,不能是数字开头</font></td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: right">密码：</td>
+                        <td><input type="password" class="textinput" id="password" name="password" onkeyup="checkPassword();"/></td>
+                        <td><span id="passwordMsg"></span><font color="#999999">密码请设置6-16位字符</font></td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: right">重复密码：</td>
+                        <td>
+                           <input type="password" class="textinput" id="repassword" name="repassword" onkeyup="checkConfirm();"/>
+                        </td>
+                        <td><span id="confirmMsg"></span>&nbsp;</td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: right">性别：</td>
+                        <td colspan="2">&nbsp;&nbsp;
+                           <input type="radio" name="gender" value="男" checked="checked" /> 男
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           <input type="radio" name="gender" value="女" /> 女
+                        </td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: right">联系电话：</td>
+                        <td colspan="2">
+                           <input type="text" class="textinput" style="width: 500px" name="telephone"/>
+                        </td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: right">个人介绍：</td>
+                        <td colspan="2">
+                           <textarea class="textarea" style="width: 500px; height: 120px;" name="introduce"></textarea>
+                        </td>
+                        <td>&nbsp;</td>
+                     </tr>
+                  </table>
+
+                  <table width="70%" border="0" cellspacing="0">
+                     <tr>
+                        <td style="padding-top: 20px; text-align:center">
+                           <button type="submit" class="submit-btn">同意并提交</button>
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+         </table>
+      </form>
+   </div>
+   <!-- 注册表单 end -->
+
+</body>
+</html>

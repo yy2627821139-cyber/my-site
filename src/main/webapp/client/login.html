@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>用户登录 - 逸夫书店</title>
+    <link rel="stylesheet" href="css/main.css" type="text/css" />
+    <script type="text/javascript">
+        /* 页面加载时，从客户端 cookie 回填用户名和密码 */
+        window.onload = function () {
+            var cookies = document.cookie.split(";");
+            var u = "", p = "";
+            for (var i = 0; i < cookies.length; i++) {
+                var kv = cookies[i].trim().split("=");
+                if (kv[0] === "username") u = decodeURIComponent(kv[1]);
+                if (kv[0] === "password") p = decodeURIComponent(kv[1]);
+            }
+            if (u) document.getElementById("username").value = u;
+            if (p) document.getElementById("password").value = p;
+            // 两个 cookie 都在时默认勾上“记住我”
+            if (u && p) document.getElementById("remember").checked = true;
+        };
+        /* 点击验证码图片刷新（加时间戳防止浏览器缓存） */
+        function refreshCode() {
+            document.getElementById("codeImg").src =
+                "../CheckCodeServlet?t=" + new Date().getTime();
+        }
+    </script>
+</head>
+<body class="main">
+
+<div class="topnav">
+    <ul>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="user_register.html">注册</a></li>
+        <li class="active"><a href="login.html">登录</a></li>
+    </ul>
+</div>
+
+<div id="divcontent" align="center">
+    <!-- 合并后的统一登录入口：提交到 loginServlet（cn.gok.yjt1012 包）。
+         一次性验证码为必填：登录时校验，提交后立即从 session 失效（附加题）。 -->
+    <form action="/yjt1012_war_exploded/loginServlet" method="post">
+        <table width="850px" border="0" cellspacing="0">
+            <tr><td style="padding:30px">
+                <h1>用户登录</h1>
+                <table width="70%" border="0" cellspacing="2" class="upline">
+                    <tr>
+                        <td style="text-align:right; width:20%">用户名：</td>
+                        <td><input type="text" class="textinput" id="username" name="username"/></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right">密码：</td>
+                        <td><input type="password" class="textinput" id="password" name="password"/></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right">验证码：</td>
+                        <td>
+                            <input type="text" class="textinput" id="code" name="code" style="width:100px" required/>
+                            <img id="codeImg" src="../CheckCodeServlet" title="看不清？点击刷新"
+                                 style="vertical-align: middle; cursor: pointer;" onclick="refreshCode()" />
+                            <span style="font-size:12px;color:#999">（必填，提交一次后失效）</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right">记住我：</td>
+                        <td><input type="checkbox" id="remember" name="remember" value="on"/> 记住用户名和密码（7天内免登录）</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="padding-top:20px; text-align:center">
+                            <button type="submit" class="submit-btn">登录</button>
+                        </td>
+                    </tr>
+                </table>
+            </td></tr>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>
